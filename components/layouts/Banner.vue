@@ -1,5 +1,5 @@
 <template>
-  <div class="w-[90%] mx-auto py-5">
+  <div class="w-full py-5">
     <div class="container mx-auto relative">
       <!-- Carousel kontent -->
       <div class="overflow-hidden rounded-md">

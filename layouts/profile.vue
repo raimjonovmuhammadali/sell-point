@@ -1,22 +1,15 @@
 <template>
   <div class="min-h-screen bg-gray-50">
-    <LayoutsHeader/>
 
     <slot/>
-    
-    <LayoutsFooter/>
+
   </div>
 </template>
 
 <script setup>
-const { profile, error, loading } = await useProfile()
 
 useHead({
   title: 'SELL-POINT'
-})
-
-onMounted(() => {
-  profile
 })
 
 
