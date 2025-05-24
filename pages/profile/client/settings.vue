@@ -11,7 +11,6 @@ const form = ref({
   email: '',
   phone: '',
   birth_date: '',
-  role: '',
   gender: '',
   address: '',
   description: '',
@@ -28,7 +27,6 @@ watchEffect(() => {
       email: profile.value.email || '',
       phone: profile.value.phone || '',
       birth_date: profile.value.birth_date || '',
-      role: profile.value.role || '',
       gender: profile.value.gender || '',
       address: profile.value.address || '',
       description: profile.value.description || '',
@@ -69,10 +67,35 @@ const updateProfile = async () => {
 </script>
 
 <template>
-  <section id="settings" class="p-6 sm:p-8 lg:p-12">
-    <h1 class="text-4xl font-extrabold text-gray-900 mb-8">Sozlamalar</h1>
-
-    <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-100">
+  <section id="settings" class="w-full p-6 sm:p-8 lg:p-12 flex flex-col md:flex-row justify-between gap-5">
+    <aside class="w-full md:w-64 bg-white shadow-md p-6 rounded-md">
+        <nav class="space-y-4">
+          <nuxt-link
+            to="./"
+            class="block text-gray-700 hover:bg-gray-200 rounded-lg px-4 py-2 text-sm font-medium transition-colors duration-200"
+            :class="{ 'bg-gray-200': $route.path === './' }"
+          >
+            Buyurtmalarim
+          </nuxt-link>
+          <nuxt-link
+            to="./reviews"
+            class="block text-gray-700 hover:bg-gray-200 rounded-lg px-4 py-2 text-sm font-medium transition-colors duration-200"
+            :class="{ 'bg-gray-200': $route.path === './reviews' }"
+          >
+            Sharhlar
+          </nuxt-link>
+          <nuxt-link
+            to="./settings"
+            class="block text-gray-700 hover:bg-gray-200 rounded-lg px-4 py-2 text-sm font-medium transition-colors duration-200"
+            :class="{ 'bg-gray-200': $route.path === './profile' }"
+          >
+            Ma'lumotlarim
+          </nuxt-link>
+        </nav>
+      </aside>
+      
+      <div class="w-full bg-white p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-100">
+      <h1 class="text-4xl font-extrabold text-gray-900 mb-8">Sozlamalar</h1>
       <h2 class="text-xl font-semibold text-gray-800 mb-6">Hisob Sozlamalari</h2>
 
       <form @submit.prevent="updateProfile" class="grid gap-6 sm:grid-cols-2">

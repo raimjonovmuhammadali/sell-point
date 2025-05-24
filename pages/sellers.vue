@@ -1,32 +1,30 @@
 <template>
   <div class="bg-gray-50 min-h-screen text-black">
-
-
     <!-- Hero Section -->
-    <section id="hero" class="bg-gradient-to-r from-primary to-button py-20 text-black">
+    <section id="hero" class="bg-gradient-to-r from-indigo-600 to-indigo-800 py-20 text-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
         <div class="md:w-1/2 text-center md:text-left animate-fade-in">
-          <h1 class="text-4xl md:text-5xl font-bold text-black leading-tight">
+          <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">
             Sotuvchi Bo‘ling va Daromad Toping!
           </h1>
-          <p class="mt-4 text-lg text-gray-400">
+          <p class="mt-4 text-lg text-gray-100">
             Mahsulotlaringizni millionlab mijozlarga soting va biznesingizni rivojlantiring.
           </p>
           <NuxtLink
             to="#register"
-            class="mt-6 inline-block px-8 py-3 bg-accent text-white font-semibold rounded-lg bg-yellow-600 transition-transform transform hover:scale-105"
+            class="mt-6 inline-block px-8 py-3 bg-yellow-500 text-white font-semibold rounded-lg transition-transform transform hover:scale-105 hover:bg-yellow-600"
           >
             Hozir Boshlang
           </NuxtLink>
         </div>
         <div class="md:w-1/2 mt-8 md:mt-0 relative">
           <img
-            src="https://images.unsplash.com/photo-1664575602554-2087b04935a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"
+            src="/images/banner.png"
             alt="Sotuvchi platformasi"
-            class="w-full rounded-lg shadow-2xl"
+            class="w-full rounded-lg"
+            @error="handleImageError"
           />
-          <!-- SVG Icon -->
-          <div class="absolute top-4 right-4 w-12 h-12 text-white">
+          <div class="absolute top-4 right-4 w-12 h-12 text-white opacity-80">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M12 2l10 6.5v7L12 22 2 15.5v-7L12 2z" />
               <path d="M12 22V15.5" />
@@ -41,11 +39,11 @@
     <!-- Benefits Section -->
     <section id="benefits" class="py-16 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-gray-800 text-center mb-12">Nega Bizni Tanlash Kerak?</h2>
+        <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-12">Nega Bizni Tanlash Kerak?</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="text-center p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-            <div class="w-16 h-16 mx-auto mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#EC4899" stroke-width="2">
+          <div class="text-center p-6 bg-gray-50 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+            <div class="w-16 h-16 mx-auto mb-4 text-indigo-500">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M12 1a7 7 0 0 0-7 7v8a7 7 0 0 0 14 0V8a7 7 0 0 0-7-7" />
                 <path d="M12 9v4" />
                 <path d="M12 15h.01" />
@@ -54,9 +52,9 @@
             <h3 class="text-xl font-semibold text-gray-800">Tez Sozlash</h3>
             <p class="mt-2 text-gray-600">Bir necha daqiqada do‘koningizni oching.</p>
           </div>
-          <div class="text-center p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-            <div class="w-16 h-16 mx-auto mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#EC4899" stroke-width="2">
+          <div class="text-center p-6 bg-gray-50 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+            <div class="w-16 h-16 mx-auto mb-4 text-indigo-500">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
                 <circle cx="9" cy="7" r="4" />
                 <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
@@ -66,9 +64,9 @@
             <h3 class="text-xl font-semibold text-gray-800">Keng Mijozlar</h3>
             <p class="mt-2 text-gray-600">Mahsulotlaringizni millionlarga yetkazing.</p>
           </div>
-          <div class="text-center p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-            <div class="w-16 h-16 mx-auto mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#EC4899" stroke-width="2">
+          <div class="text-center p-6 bg-gray-50 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+            <div class="w-16 h-16 mx-auto mb-4 text-indigo-500">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                 <polyline points="22 4 12 14.01 9 11.01" />
               </svg>
@@ -83,7 +81,7 @@
     <!-- How It Works Section -->
     <section id="how-it-works" class="py-16 bg-gray-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-gray-800 text-center mb-12">Qanday Ishlaydi?</h2>
+        <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-12">Qanday Ishlaydi?</h2>
         <div class="space-y-12">
           <div class="flex flex-col md:flex-row items-center animate-fade-in">
             <div class="md:w-1/3">
@@ -91,10 +89,11 @@
                 src="https://brainrain.com.ua/wp-content/uploads/2022/07/REGISTRATION-01.svg"
                 alt="Ro‘yxatdan o‘tish"
                 class="w-full rounded-lg shadow-md"
+                @error="handleImageError"
               />
             </div>
             <div class="md:w-2/3 md:pl-8 mt-4 md:mt-0">
-              <div class="w-12 h-12 mb-4 text-primary">
+              <div class="w-12 h-12 mb-4 text-indigo-500">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M12 20h9" />
                   <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
@@ -110,10 +109,11 @@
                 src="https://avatars.mds.yandex.net/i?id=5b4b1a52fe25ca8005f9d6e0c09bea5b_l-4937827-images-thumbs&n=13"
                 alt="Mahsulot yuklash"
                 class="w-full rounded-lg shadow-md"
+                @error="handleImageError"
               />
             </div>
             <div class="md:w-2/3 md:pr-8 mt-4 md:mt-0">
-              <div class="w-12 h-12 mb-4 text-primary">
+              <div class="w-12 h-12 mb-4 text-indigo-500">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M3 3h18v18H3z" />
                   <path d="M12 8v8" />
@@ -130,10 +130,11 @@
                 src="https://images.unsplash.com/photo-1579227114347-15d08fc37cae?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"
                 alt="Sotish"
                 class="w-full rounded-lg shadow-md"
+                @error="handleImageError"
               />
             </div>
             <div class="md:w-2/3 md:pl-8 mt-4 md:mt-0">
-              <div class="w-12 h-12 mb-4 text-primary">
+              <div class="w-12 h-12 mb-4 text-indigo-500">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                   <polyline points="22 4 12 14.01 9 11.01" />
@@ -150,10 +151,10 @@
     <!-- Testimonials Section -->
     <section id="testimonials" class="py-16 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-gray-800 text-center mb-12">Sotuvchilarimiz Fikri</h2>
+        <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-12">Sotuvchilarimiz Fikri</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-            <div class="w-12 h-12 mx-auto mb-4 text-primary">
+          <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+            <div class="w-12 h-12 mx-auto mb-4 text-indigo-500">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M3 21v-4a4 4 0 0 1 4-4h5" />
                 <path d="M12 21v-4a4 4 0 0 1 4-4h5" />
@@ -167,6 +168,7 @@
                 src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
                 alt="Sotuvchi"
                 class="w-12 h-12 rounded-full mr-2"
+                @error="handleImageError"
               />
               <div>
                 <p class="font-semibold text-gray-800">Jamol Xasanov</p>
@@ -174,8 +176,8 @@
               </div>
             </div>
           </div>
-          <div class="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-            <div class="w-12 h-12 mx-auto mb-4 text-primary">
+          <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+            <div class="w-12 h-12 mx-auto mb-4 text-indigo-500">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M3 21v-4a4 4 0 0 1 4-4h5" />
                 <path d="M12 21v-4a4 4 0 0 1 4-4h5" />
@@ -189,6 +191,7 @@
                 src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
                 alt="Sotuvchi"
                 class="w-12 h-12 rounded-full mr-2"
+                @error="handleImageError"
               />
               <div>
                 <p class="font-semibold text-gray-800">Nargiza To‘rayeva</p>
@@ -196,8 +199,8 @@
               </div>
             </div>
           </div>
-          <div class="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-            <div class="w-12 h-12 mx-auto mb-4 text-primary">
+          <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+            <div class="w-12 h-12 mx-auto mb-4 text-indigo-500">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M3 21v-4a4 4 0 0 1 4-4h5" />
                 <path d="M12 21v-4a4 4 0 0 1 4-4h5" />
@@ -211,6 +214,7 @@
                 src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
                 alt="Sotuvchi"
                 class="w-12 h-12 rounded-full mr-2"
+                @error="handleImageError"
               />
               <div>
                 <p class="font-semibold text-gray-800">Shaxzod Karimov</p>
@@ -222,17 +226,17 @@
       </div>
     </section>
 
-    <!-- CTA Section with Form -->
-    <section id="register" class="py-16 bg-gradient-to-r from-button to-primary text-white">
+    <!-- Register Section -->
+    <section id="register" class="py-16 bg-gradient-to-r from-indigo-800 to-indigo-600 text-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl font-bold mb-4 text-gray-600">Bugun Sotuvchi Bo‘ling!</h2>
-        <p class="text-lg mb-8 text-gray-600">Ro‘yxatdan o‘ting va biznesingizni yangi bosqichga olib chiqing.</p>
+        <h2 class="text-3xl font-extrabold text-white mb-4">Bugun Sotuvchi Bo‘ling!</h2>
+        <p class="text-lg mb-8 text-gray-200">Ro‘yxatdan o‘ting va biznesingizni yangi bosqichga olib chiqing.</p>
         <form class="max-w-md mx-auto space-y-4">
           <div>
             <input
               type="text"
               placeholder="Ismingiz"
-              class="w-full px-4 py-2 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent border border-gray-500"
+              class="w-full px-4 py-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-yellow-400 border border-gray-300 shadow-sm"
               required
             />
           </div>
@@ -240,7 +244,7 @@
             <input
               type="email"
               placeholder="Email"
-              class="w-full px-4 py-2 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent border border-gray-500"
+              class="w-full px-4 py-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-yellow-400 border border-gray-300 shadow-sm"
               required
             />
           </div>
@@ -248,20 +252,41 @@
             <input
               type="tel"
               placeholder="Telefon Raqamingiz"
-              class="w-full px-4 py-2 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent border border-gray-500"
+              class="w-full px-4 py-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-yellow-400 border border-gray-300 shadow-sm"
               required
             />
           </div>
           <button
             type="submit"
-            class="w-full px-8 py-3 bg-accent text-white font-semibold rounded-lg bg-yellow-600 transition-transform transform hover:scale-105"
+            class="w-full px-8 py-3 bg-yellow-500 text-white font-semibold rounded-lg transition-transform transform hover:scale-105 hover:bg-yellow-600"
           >
             Ro‘yxatdan O‘tish
           </button>
         </form>
       </div>
     </section>
-
-
   </div>
 </template>
+
+<script setup>
+const handleImageError = (event) => {
+  event.target.src = 'https://via.placeholder.com/300x200?text=Image+Not+Found';
+};
+</script>
+
+<style scoped>
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+}
+</style>

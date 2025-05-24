@@ -1,6 +1,6 @@
 <template>
-  <section id="products" class="w-full py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 min-h-screen">
-    <div class="w-full mx-auto">
+  <section id="products" class="py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 min-h-screen">
+    <div class="max-w-7xl mx-auto">
       <h1 class="text-4xl font-extrabold text-gray-900 mb-8">Mahsulotlarni Boshqarish</h1>
       <div class="bg-white p-8 rounded-2xl shadow-lg">
         <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
@@ -87,7 +87,7 @@
       <transition name="modal">
         <div
           v-if="modalState.isOpen"
-          class="w-full absolute top-0 backdrop-blur-sm flex items-center justify-center z-50"
+          class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
           role="dialog"
           :aria-labelledby="modalState.mode === 'add' ? 'add-modal-title' : 'edit-modal-title'"
           aria-modal="true"
@@ -187,6 +187,17 @@
                     class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-indigo-50 file:text-indigo-600 hover:file:bg-indigo-100 transition-all duration-300"
                     aria-label="Rasm yuklash"
                   />
+                </div>
+                <div>
+                  <label class="text-sm font-medium text-gray-600">Holati</label>
+                  <select
+                    v-model="currentProduct.status"
+                    class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-300"
+                    aria-label="Mahsulot holatini tanlash"
+                  >
+                    <option value="active" class="text-green-600">Aktiv</option>
+                    <option value="inactive" class="text-red-600">Aktiv emas</option>
+                  </select>
                 </div>
                 <div class="flex justify-end gap-3">
                   <button

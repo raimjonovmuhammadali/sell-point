@@ -4,17 +4,15 @@
     <div class="flex flex-wrap gap-1 mb-4 text-[12px] text-gray-600">
       <nuxt-link to="/" class="text-blue-500 hover:underline">Bosh sahifa</nuxt-link>
       <span>/</span>
-      <span>{{ displayCategoryName ? displayCategoryName : ' '}}</span>
+      <span>{{ displayCategoryName }}</span>
     </div>
 
     <!-- Sarlavha -->
-    <h2 class="text-2xl md:text-3xl font-semibold text-gray-800 mb-6">
-      {{ displayCategoryName ? displayCategoryName : ' '}}
-    </h2>
+    <h2 class="text-2xl md:text-3xl font-semibold text-gray-800 mb-6">{{ displayCategoryName }}</h2>
 
     <!-- Mahsulotlar -->
     <div v-if="loading" class="text-center text-gray-500">Yuklanmoqda...</div>
-    <div v-else-if="error" class="text-center text-red-500">{{ error }}</div>
+    <div v-else-if="errorMessage" class="text-center text-red-500">{{ errorMessage }}</div>
     <div v-else-if="products.length === 0" class="text-center text-gray-500">Mahsulotlar topilmadi</div>
     <div v-else class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
       <div
@@ -51,7 +49,10 @@
             <p class="font-bold text-[10px] text-gray-500 line-through">{{ formatPrice(product.price + 10000) }} so‘m</p>
             <p class="font-bold text-xs">{{ formatPrice(product.price) }} so‘m</p>
           </div>
-          <div class="p-1 border border-gray-400 rounded-full cursor-pointer hover:bg-gray-200">
+          <div
+            class="p-1 border border-gray-400 rounded-full cursor-pointer hover:bg-gray-200"
+            @click="addToCart(product.id)"
+          >
             <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 stroke-linecap="round"
@@ -69,15 +70,15 @@
 
 <script setup>
 import { ref, onMounted, watch, computed } from 'vue'
-import { useRoute } from 'vue-router'
-
+import { useRoute, useRouter } from 'vue-router'
 
 const route = useRoute()
+const router = useRouter()
 
 const categories = ref([])
 const products = ref([])
 const loading = ref(false)
-const errorMessage = ref(null)   // error -> errorMessage
+const errorMessage = ref(null)
 
 const selectedCategoryId = computed(() => {
   const id = Number(route.params.id)
@@ -119,8 +120,10 @@ const fetchProducts = async (categoryId = null) => {
   errorMessage.value = null
   try {
     let url = `${BASE_URL}products/`
-    if (categoryId) url += `?category=${categoryId}`
+    if (categoryId) url += `?category_id=${categoryId}`
     const res = await fetch(url)
+    console.log(res);
+    
     if (!res.ok) throw new Error('Serverdan javob kelmadi')
     const data = await res.json()
     products.value = data.results ?? data
@@ -129,6 +132,38 @@ const fetchProducts = async (categoryId = null) => {
     products.value = []
   } finally {
     loading.value = false
+  }
+}
+
+const addToCart = async (productId) => {
+  const user = JSON.parse(localStorage.getItem('user'))
+  if (!user || !user) {
+    router.push('/login')
+    return
+  }
+
+  const cartId = localStorage.getItem('cart_id')
+  if (!cartId) {
+    alert('Savatcha topilmadi')
+    return
+  }
+
+  try {
+    await fetch(`${BASE_URL}cartItems/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        summ: 0,
+        amount: 1,
+        product: productId,
+        cart: Number(cartId)
+      })
+    })
+    alert("Mahsulot savatchaga qo‘shildi")
+  } catch (e) {
+    alert("Xatolik yuz berdi: mahsulotni savatchaga qo‘shib bo‘lmadi")
   }
 }
 

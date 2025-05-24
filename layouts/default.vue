@@ -9,7 +9,8 @@
 </template>
 
 <script setup>
-const { profile, error, loading } = await useProfile()
+const { profile } = await useProfile()
+import { useCart } from '@/composables/useCart'
 
 useHead({
   title: 'SELL-POINT'

@@ -19,6 +19,7 @@ export const useProfile = async () => {
           Authorization: `Bearer ${token}`
         }
       })
+      
       localStorage.setItem('role', data.value.role)
       localStorage.setItem('city', data.value.address)
       localStorage.setItem('user', data.value.id)

@@ -1,30 +1,34 @@
-// composables/useProfile.js
-import { ref } from 'vue'
-import { BASE_URL } from './useApi'
-
 export const useProducts = () => {
-  const productsdata = useState('products', () => null)
-  const error = useState('producterror', () => null)
-  const loading = useState('productloading', () => false)
+  const products = ref([])
+  const userProducts = ref([])
+  const isLoading = ref(false)
+  const error = ref(null)
 
-  const fetchProducts = async () => {
-
-    loading.value = true
+  const getProducts = async () => {
+    isLoading.value = true
+    error.value = null
     try {
-      const res = await fetch(`${BASE_URL}/products/`)
+      const { data } = await useFetch(`${BASE_URL}products/`)
+      products.value = data.value?.results || []
 
-      if (!res.ok) {
-        throw new Error('Ma’lumot yuklanmadi')
-      }
+      // Localdagi foydalanuvchi ID ni olish (misol: localStorage yoki cookie)
+      const userId = parseInt(localStorage.getItem('user'))
 
-      const data = await res.json()
-      productsdata.value = data
+      // Faqat shu userga tegishli mahsulotlar
+      userProducts.value = products.value.filter(product => product.user === userId)
+      
     } catch (err) {
-      error.value = err.message || 'Xatolik yuz berdi'
+      error.value = err
     } finally {
-      loading.value = false
+      isLoading.value = false
     }
   }
 
-  return { productsdata, error, loading, fetchProducts }
+  return {
+    products,
+    userProducts,
+    isLoading,
+    error,
+    getProducts
+  }
 }

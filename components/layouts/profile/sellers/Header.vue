@@ -78,19 +78,19 @@
           </li>
           <li>
             <nuxt-link
-              to="./customers"
-              class="text-gray-700 hover:text-purple-600 font-medium text-lg"
-            >
-              Mijozlar
-            </nuxt-link>
-          </li>
-          <li>
-            <nuxt-link
               to="./settings"
               class="text-gray-700 hover:text-purple-600 font-medium text-lg"
             >
               Sozlamalar
             </nuxt-link>
+          </li>
+          <li>
+            <button
+              @click="logout"
+              class="text-left w-full text-gray-700 hover:text-purple-600 font-medium text-lg"
+            >
+              Chiqish
+            </button>
           </li>
         </ul>
       </div>
@@ -124,31 +124,33 @@
       </li>
       <li>
         <nuxt-link
-          to="./customers"
-          class="text-lg text-gray-700 hover:text-purple-600 font-medium"
-        >
-          Mijozlar
-        </nuxt-link>
-      </li>
-      <li>
-        <nuxt-link
           to="./settings"
           class="text-lg text-gray-700 hover:text-purple-600 font-medium"
         >
           Sozlamalar
         </nuxt-link>
       </li>
+      <li>
+        <button
+          @click="logout"
+          class="text-lg text-gray-700 hover:text-purple-600 font-medium"
+        >
+          Chiqish
+        </button>
+      </li>
     </ul>
   </header>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+
+// Router instance
+const router = useRouter()
 
 // Mobil menyu holati
 const isMenuOpen = ref(false)
-
-// Menyuni ochish/yopish
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
 }
@@ -163,6 +165,21 @@ onMounted(() => {
     role.value = localStorage.getItem('role')
   }
 })
+
+// Chiqish funksiyasi
+const logout = () => {
+  localStorage.removeItem('access_token')
+  localStorage.removeItem('refresh_token')
+  localStorage.removeItem('cart_id')
+  localStorage.removeItem('city')
+  localStorage.removeItem('role')
+  localStorage.removeItem('user')
+
+  isLoggedIn.value = false
+  role.value = null
+
+  router.push('/auth/login')
+}
 </script>
 
 <style scoped>
